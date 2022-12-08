@@ -125,6 +125,8 @@ const Playlist = mongoose.model("Playlist", playlistSchema);
 //     }
 // };
 
+// ?COMPARISON OPERATOR
+
 // const getDocument = async () => {
 //     try {
 //         const result = await Playlist.find({ videos: { $gte: 50 } }).select({
@@ -138,15 +140,86 @@ const Playlist = mongoose.model("Playlist", playlistSchema);
 //     }
 // };
 
+// const getDocument = async () => {
+//     try {
+//         const result = await Playlist.find({
+//             ctype: { $in: ["Back End", "Database"] },
+//         }).select({
+//             _id: 0,
+//             name: 1,
+//             ctype: 1,
+//         });
+//         console.log(result);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
+
+//? LOGICAL OPERATOR
+
+// const getDocument = async () => {
+//     try {
+//         const result = await Playlist.find({
+//             $or: [{ ctype: "Back End" }, { active: true }],
+//         }).select({
+//             _id: 0,
+//             name: 1,
+//             ctype: 1,
+//             active:1,
+//         });
+//         console.log(result);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
+
+// const getDocument = async () => {
+//     try {
+//         const result = await Playlist.find({
+//             $and: [{ ctype: "Back End" }, { active: true }],
+//         }).select({
+//             _id: 0,
+//             name: 1,
+//             ctype: 1,
+//             active: 1,
+//         });
+//         console.log(result);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
+
+//* COUNTING DOCUMENTS
+
+// const getDocument = async () => {
+//     try {
+//         const result = await Playlist.find({
+//             $or: [{ ctype: "Back End" }, { active: true }],
+//         })
+//             .select({
+//                 _id: 0,
+//                 name: 1,
+//                 ctype: 1,
+//                 active: 1,
+//             })
+//             .countDocuments();
+//         console.log(result);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
+
+//* SORTING
+
 const getDocument = async () => {
     try {
-        const result = await Playlist.find({
-            ctype: { $in: ["Back End", "Database"] },
-        }).select({
-            _id: 0,
-            name: 1,
-            ctype: 1,
-        });
+        const result = await Playlist.find()
+            .select({
+                _id: 0,
+                name: 1,
+                videos: 1,
+            })
+            .sort({ videos: -1 });
         console.log(result);
     } catch (error) {
         console.error(error);
@@ -154,17 +227,3 @@ const getDocument = async () => {
 };
 
 getDocument();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
