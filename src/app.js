@@ -113,11 +113,39 @@ const Playlist = mongoose.model("Playlist", playlistSchema);
 
 //* QUEARY DOCUMENTS
 
+// const getDocument = async () => {
+//     try {
+//         const result = await Playlist.find({ ctype: "Front End" }).select({
+//             name: 1,
+//             _id: 0,
+//         });
+//         console.log(result);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
+
+// const getDocument = async () => {
+//     try {
+//         const result = await Playlist.find({ videos: { $gte: 50 } }).select({
+//             name: 1,
+//             _id: 0,
+//             videos: 1,
+//         });
+//         console.log(result);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
+
 const getDocument = async () => {
     try {
-        const result = await Playlist.find({ ctype: "Front End" }).select({
-            name: 1,
+        const result = await Playlist.find({
+            ctype: { $in: ["Back End", "Database"] },
+        }).select({
             _id: 0,
+            name: 1,
+            ctype: 1,
         });
         console.log(result);
     } catch (error) {
@@ -126,3 +154,17 @@ const getDocument = async () => {
 };
 
 getDocument();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
