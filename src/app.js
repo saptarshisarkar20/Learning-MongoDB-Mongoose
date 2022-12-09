@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
+console.log("Running..........??");
+
 //* CONNECTING
 mongoose
-    .connect("mongodb://localhost:27017/learnmongo", {
+    .connect("mongodb://127.0.0.1/learnmongo", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -26,8 +28,9 @@ const playlistSchema = new mongoose.Schema({
     },
 });
 
-//* MAKING MODEL
-//* CREATING COLLECTION - should be in pascal case (first letter capital)
+// * MAKING MODEL
+// * CREATING COLLECTION - should be in pascal case (first letter capital)
+
 const Playlist = mongoose.model("Playlist", playlistSchema);
 
 //* INSERTING  & CREATING DOCUMENTS
@@ -60,6 +63,8 @@ const Playlist = mongoose.model("Playlist", playlistSchema);
 //         console.error(err);
 //     }
 // };
+
+// createDocument();
 
 //* INSERTING MANY VALUES TOGETHER
 
