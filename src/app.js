@@ -1,16 +1,34 @@
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
-console.log("Running..........??");
+// console.log("Running..........??");
 
 //* CONNECTING
-mongoose
-    .connect("mongodb://127.0.0.1/learnmongo", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(() => console.log("Connected to Mongo DB"))
-    .catch((err) => console.log(err));
+// mongoose
+//     .connect("mongodb://127.0.0.1/learnmongo", {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//     })
+//     .then(() => console.log("Connected to Mongo DB"))
+//     .catch((err) => console.log(err));
+
+const connectIT = async () => {
+
+    try {
+        const result = await mongoose.connect("mongodb://127.0.0.1/learnmongo", {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        // console.log(result);
+        console.log("Connecting Successful");
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+connectIT();
+
 
 //* MAKING SCHEMA
 const playlistSchema = new mongoose.Schema({
@@ -215,20 +233,67 @@ const Playlist = mongoose.model("Playlist", playlistSchema);
 // };
 
 //* SORTING
+// const getDocument = async () => {
+//     try {
+//         const result = await Playlist.find()
+//             .select({
+//                 _id: 0,
+//                 name: 1,
+//                 videos: 1,
+//             })
+//             .sort({ videos: -1 });
+//         console.log(result);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
 
-const getDocument = async () => {
-    try {
-        const result = await Playlist.find()
-            .select({
-                _id: 0,
-                name: 1,
-                videos: 1,
-            })
-            .sort({ videos: -1 });
-        console.log(result);
-    } catch (error) {
-        console.error(error);
-    }
-};
+// getDocument();
 
-getDocument();
+//* UPDATING DOCUMENT
+// const updateDocument = async (id) => {
+//     try {
+//         const result = await Playlist.updateOne(
+//             { _id: id },
+//             { $set: { name: "JavaScript" } }
+//         );
+//         console.log(result);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
+
+// updateDocument("6393799ce668aa2cc1130326");
+
+//*FIND & UPDATE
+// const updateDocument = async (id) => {
+//     try {
+//         const result = await Playlist.findOneAndUpdate(
+//             { _id: id },
+//             { $set: { name: "JavaScript" } },
+//             { new: true }
+//         );
+//         console.log(result);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
+
+// updateDocument("6393799ce668aa2cc1130326");
+
+
+//* DELETING DOCUMENT
+// const deleteDocument = async (_name) => {
+//     try {
+//         const result = await Playlist.deleteOne({ name: _name });
+//         console.log(result);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+// deleteDocument("Mongoose");
+
+
+
+
+
