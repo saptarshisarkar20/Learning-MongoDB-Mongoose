@@ -16,9 +16,6 @@
     "type": "git",
     "url": "git+https://github.com/saptarshisarkar20/Learning-MongoDB-Mongoose.git"
   },
-  "bugs": {
-    "url": "https://github.com/saptarshisarkar20/Learning-MongoDB-Mongoose/issues"
-  },
   "homepage": "https://github.com/saptarshisarkar20/Learning-MongoDB-Mongoose#readme",
-  "description": ""
+  "description": "Learning Mongodb from Youtube !!"
 }
