@@ -1,23 +1,24 @@
 {
-  "name": "mongodb",
+  "name": "mongo-db",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.8.0",
+    "validator": "^13.7.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/saptarshisarkar20/Learning-MongoDB-Mongoose.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/saptarshisarkar20/Learning-MongoDB-Mongoose/issues"
   },
   "homepage": "https://github.com/saptarshisarkar20/Learning-MongoDB-Mongoose#readme",
-  "dependencies": {
-    "mongoose": "^6.8.0"
-  }
+  "description": ""
 }

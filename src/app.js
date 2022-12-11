@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
+const validator = require("validator");
+
 // console.log("Running..........??");
 
 //* CONNECTING
@@ -20,7 +22,7 @@ const connectIT = async () => {
             useUnifiedTopology: true,
         });
         // console.log(result);
-        console.log("Connecting Successful");
+        console.log("Connection Successful");
 
     } catch (error) {
         console.log(error);
@@ -35,10 +37,51 @@ const playlistSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
+        //* VALIDATION
+        lowercase: true,
+        trim: true
     },
-    ctype: String,
-    videos: Number,
-    author: String,
+    ctype: {
+        type: String,
+        //* VALIDATION 
+        lowercase: true,
+        enum: ["frontend", "backend", "database"],
+    },
+    videos:
+    {
+
+
+        type: Number,
+
+        //* CUSTOM VALIDATOR
+        validate(value) {
+            if (value < 0) {
+                throw new Error("Videos Count Should Not be Negative");
+            }
+        },
+    },
+
+    author: {
+        type: String,
+        //* VALIDATION
+        minlength: [3, "MINIMUM 2 LETTERS REQUIRED"],       //? CUSTOM VALIDATION MESSEGE
+        maxlength: 30
+
+    },
+
+    email: {
+        type: String,
+        required: true,
+        lowercase: true,
+
+        //* VALIDATION USING VALIDATOR NPM PACKAGE
+        validate(value) {
+            if (!validator.isEmail(value)) {
+                throw new Error("Invalid Email Address");
+            }
+        }
+    },
+
     active: Boolean,
     date: {
         type: Date,
@@ -66,23 +109,24 @@ const Playlist = mongoose.model("Playlist", playlistSchema);
 
 // ? new method
 
-// const createDocument = async () => {
-//     try {
-//         const insertPlaylist = new Playlist({
-//             name: "Node JS",
-//             ctype: "Back End",
-//             videos: 50,
-//             author: "IamSS",
-//             active: true,
-//         });
-//         const result = await insertPlaylist.save();
-//         console.log(result);
-//     } catch (err) {
-//         console.error(err);
-//     }
-// };
+const createDocument = async () => {
+    try {
+        const insertPlaylist = new Playlist({
+            name: "NEW JS",
+            ctype: "BackEnd",
+            videos: 7,
+            author: "IamSS",
+            email: "ITSMYMAIL@gmail.com",
+            active: true,
+        });
+        const result = await insertPlaylist.save();
+        console.log(result);
+    } catch (err) {
+        console.error(err);
+    }
+};
 
-// createDocument();
+createDocument();
 
 //* INSERTING MANY VALUES TOGETHER
 
